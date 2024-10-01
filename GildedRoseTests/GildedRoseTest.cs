@@ -7,10 +7,13 @@ namespace GildedRoseTests
 {
     public class GildedRoseTest
     {
-        //TODO: Conjured degrade twice as fast as normal items (not implemented yet) 
+        //TODO: Conjured degrade twice as fast as normal items (not implemented yet)
+        //See Program.cs
+        //Extend Tests to cover boundaries:
+        // - Under/Over SellIn (normal)
+        // - Under/Over SellIn period (brie)
+        // - Over 10, 5 SellIn period (backstage passes)
 
-
-        //SellIn & Quality reduces on UpdateQuality (normal)
         [Fact]
         public void Quality_Reduces_For_Normal_Item() {
             IList<Item> Items = [new Item { Name = "foo", SellIn = 1, Quality = 5 }];
@@ -32,7 +35,6 @@ namespace GildedRoseTests
             Assert.Equal(0, item.SellIn);
         }
 
-        //Quality degrades 2x after SellIn (normal)
         [Fact]
         public void Quality_Degrades_After_SellIn_For_Normal_Item()
         {
@@ -44,8 +46,6 @@ namespace GildedRoseTests
             Assert.Equal(3, item.Quality);
         }
 
-
-        //Quality cannot be below 0
         [Fact]
         public void Quality_Cannot_Be_Below_0_For_Expired_Normal_Item()
         {
@@ -68,7 +68,6 @@ namespace GildedRoseTests
             Assert.Equal(0, item.Quality);
         }
 
-        //Quality increases on UpdateQuality (Brie)
         [Fact]
         public void Quality_Increases_For_Brie()
         {
@@ -93,7 +92,6 @@ namespace GildedRoseTests
             Assert.Equal(3, item.Quality);
         }
 
-        //Quality cannot exceed 50 (all)
         [Fact]
         public void Brie_Quality_Cannot_Exceed_50_After_SellIn()
         {
@@ -127,21 +125,71 @@ namespace GildedRoseTests
             Assert.Equal(50, item.Quality);
         }
 
-        //Sulfuras SellIn never changes
-        //Sulfuras Quality never changes, is always 80
+        [Fact]
+        public void Sulfuras_SellIn_Never_Changes()
+        {
+            IList<Item> Items = [new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 5, Quality = 50 }];
+            GildedRose app = new(Items);
+            app.UpdateQuality();
 
-        //Backstage Passes increase in quality (+2 >=10 days, +3 >= 5days
-        //Backstage Passes quality == 0 after SellIn
+            var item = Items.First();
+            Assert.Equal(5, item.SellIn);
+        }
 
+        [Fact]
+        public void Sulfuras_Quality_Is_Stays_At_80()
+        {
+            IList<Item> Items = [new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 5, Quality = 80 }];
+            GildedRose app = new(Items);
+            app.UpdateQuality();
 
+            var item = Items.First();
+            Assert.Equal(80, item.Quality);
+        }
 
-        //[Fact]
-        //public void foo()
-        //{
-        //    IList<Item> Items = new List<Item> { new Item { Name = "foo", SellIn = 0, Quality = 0 } };
-        //    GildedRose app = new GildedRose(Items);
-        //    app.UpdateQuality();
-        //    Assert.Equal("fixme", Items[0].Name);
-        //}
+        [Fact]
+        public void Sulfuras_Quality_Is_Always_80()
+        {
+            IList<Item> Items = [new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 5, Quality = 50 }];
+            GildedRose app = new(Items);
+            app.UpdateQuality();
+
+            var item = Items.First();
+            //TODO: Test fails, re-check requirements
+            Assert.Equal(80, item.Quality);
+        }
+
+        [Fact]
+        public void BackstagePass_Increases_By_1_Outside_10_Days()
+        {
+            IList<Item> Items = [new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 11, Quality = 10 }];
+            GildedRose app = new(Items);
+            app.UpdateQuality();
+
+            var item = Items.First();
+            Assert.Equal(11, item.Quality);
+        }
+
+        [Fact]
+        public void BackstagePass_Increases_By_2_Outside_5_Days()
+        {
+            IList<Item> Items = [new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 6, Quality = 10 }];
+            GildedRose app = new(Items);
+            app.UpdateQuality();
+
+            var item = Items.First();
+            Assert.Equal(12, item.Quality);
+        }
+
+        [Fact]
+        public void BackstagePass_Increases_By_3_Inside_5_Days()
+        {
+            IList<Item> Items = [new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 3, Quality = 10 }];
+            GildedRose app = new(Items);
+            app.UpdateQuality();
+
+            var item = Items.First();
+            Assert.Equal(13, item.Quality);
+        }
     }
 }
