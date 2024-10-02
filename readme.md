@@ -34,9 +34,18 @@ At every point we need to ensure our unit tests are passing.
 Let's exclude the two failing tests (Sulfuras_Quality_Is_Always_80 & Quality_Increases_For_Brie) for now. 
 The ApprovalTest acts as our catch-all at least for now.
  
+## Update 10/2 - First Pass
+Additional boundary Tests (SellIn == 0) added.
 
+First pass refactor of UpdateQuality complete. Switch, constaints and dedicated methods added. Code readable but a bit "iffy" Common themes:- 
 
+* We always decrement SellIn last
+* We check for > 0 and < 50 at the end rather than on each increment (if not Sulfuras).
 
+### Next Steps
+Introduce classes for the 4 types of item, introduce factory to create AgedBrieItem etc 
+Correct namespaces
+Extend for "Conjured Mana Cake" - note that this will require tests AND break the ApprovalTest
 
 
 
