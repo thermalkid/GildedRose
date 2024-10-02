@@ -40,12 +40,12 @@ Additional boundary Tests (SellIn == 0) added.
 First pass refactor of UpdateQuality complete. Switch, constaints and dedicated methods added. Code readable but a bit "iffy" Common themes:- 
 
 * We always decrement SellIn last
-* We check for > 0 and < 50 at the end rather than on each increment (if not Sulfuras).
+* We check for > 0 and < 50 at the end rather than on each quality change (if not Sulfuras).
 
 ### Next Steps
-Introduce classes for the 4 types of item, introduce factory to create AgedBrieItem etc 
-Correct namespaces
-Extend for "Conjured Mana Cake" - note that this will require tests AND break the ApprovalTest
+* Introduce classes for the 4 types of item, introduce factory to create AgedBrieItem etc 
+* Correct namespaces
+* Extend for "Conjured Mana Cake" - note that this will require tests AND break the ApprovalTest
 
 
 
