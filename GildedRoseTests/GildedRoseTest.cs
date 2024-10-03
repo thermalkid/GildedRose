@@ -222,6 +222,28 @@ namespace GildedRoseTests
             Assert.Equal(8, item.Quality);
         }
 
+        [Fact]
+        public void Conjured_Items_Quality_Decrease_Twice_As_Fast_As_Normal_Items_Before_SellIn()
+        {
+            IList<Item> Items = [new Item { Name = "Conjured Mana Cake", SellIn = 5, Quality = 10 }];
+            GildedRose app = new(Items);
+            app.UpdateQuality();
+
+            var item = Items.First();
+            Assert.Equal(8, item.Quality);
+        }
+
+        [Fact]
+        public void Conjured_Items_Quality_Decrease_Twice_As_Fast_As_Normal_Items_After_SellIn()
+        {
+            IList<Item> Items = [new Item { Name = "Conjured Mana Cake", SellIn = -1, Quality = 10 }];
+            GildedRose app = new(Items);
+            app.UpdateQuality();
+
+            var item = Items.First();
+            Assert.Equal(6, item.Quality);
+        }
+
 
     }
 }
