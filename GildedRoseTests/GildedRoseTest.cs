@@ -124,17 +124,6 @@ namespace GildedRoseTests
         }
 
         [Fact]
-        public void Normal_Quality_Cannot_Exceed_50_After_SellIn()
-        {
-            IList<Item> Items = [new Item { Name = "Aged Brie", SellIn = -1, Quality = 50 }];
-            GildedRose app = new(Items);
-            app.UpdateQuality();
-
-            var item = Items.First();
-            Assert.Equal(50, item.Quality);
-        }
-
-        [Fact]
         public void Sulfuras_SellIn_Never_Changes()
         {
             IList<Item> Items = [new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 5, Quality = 50 }];

@@ -1,8 +1,8 @@
 ﻿namespace GildedRoseKata.Common
 {
-    internal class BackstagePassItem(Item item) : IQualityUpdater
+    internal class BackstagePassItem() : BaseItemUpdater
     {
-        public void UpdateQuality()
+        public override void UpdateQuality(Item item)
         {
             if (item.SellIn > 0)
             {
@@ -17,18 +17,13 @@
                 {
                     item.Quality++;
                 }
-
-                if (item.Quality > 50)
-                {
-                    item.Quality = 50;
-                }
             }
-            else
-            {
+            else {
+
                 item.Quality = 0;
             }
-
-            item.SellIn--;
+    
+            base.UpdateQuality(item);
         }
     }
 }

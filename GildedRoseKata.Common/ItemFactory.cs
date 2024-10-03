@@ -8,22 +8,22 @@ namespace GildedRoseKata.Common
         private const string BACKSTAGE_PASS = "Backstage pass";
         private const string SULFURAS = "Sulfuras";
 
-        public static IQualityUpdater Create(Item item)
+        public static IQualityUpdater Create(string name)
         {
-            if (item.Name.StartsWith(SULFURAS))
+            if (name.StartsWith(SULFURAS))
             {
-                return new SulfurasItem(item);
+                return new SulfurasItem();
             }
-            else if (item.Name.StartsWith(AGED_BRIE))
+            else if (name.StartsWith(AGED_BRIE))
             {
-                return new AgedBrieItem(item);
+                return new AgedBrieItem();
             }
-            else if (item.Name.StartsWith(BACKSTAGE_PASS))
+            else if (name.StartsWith(BACKSTAGE_PASS))
             {
-                return new BackstagePassItem(item);
+                return new BackstagePassItem();
             }
 
-            return new NormalItem(item);
+            return new NormalItem();
         }
     }
 }

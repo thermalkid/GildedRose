@@ -1,8 +1,8 @@
 ﻿namespace GildedRoseKata.Common
 {
-    internal class NormalItem(Item item) : IQualityUpdater
+    internal class NormalItem() : BaseItemUpdater
     {
-        public void UpdateQuality()
+        public override void UpdateQuality(Item item)
         {
             item.Quality--;
 
@@ -11,12 +11,7 @@
                 item.Quality--;
             }
 
-            if (item.Quality < 0)
-            {
-                item.Quality = 0;
-            }
-
-            item.SellIn--;
+            base.UpdateQuality(item);
         }
     }
 }

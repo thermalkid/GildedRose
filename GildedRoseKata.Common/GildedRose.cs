@@ -19,8 +19,8 @@
 
         private static void UpdateItemQuality(Item item)
         {
-            var factoryItem = ItemFactory.Create(item);
-            factoryItem.UpdateQuality();
+            var factoryItem = ItemFactory.Create(item.Name);
+            factoryItem.UpdateQuality(item);
         }
     }
 }
