@@ -8,21 +8,6 @@ namespace GildedRoseTests
 {
     public class GildedRoseTest
     {
-        //UpdateQuality Breakdown
-        //-----------------------
-        //COVERED - Quantity Decreases by 1 if a "Normal" item - not "Aged Brie", "Backstage passes to a TAFKAL80ETC concert", "Sulfuras, Hand of Ragnaros"
-        //COVERED- Quantity cannot go below 0 if a "Normal" item - not "Aged Brie", "Backstage passes to a TAFKAL80ETC concert", "Sulfuras, Hand of Ragnaros"
-        //COVERED - "Sulfuras, Hand of Ragnaros" does not decrease in quality
-        //COVERED - If Aged Brie OR "Backstage passes to a TAFKAL80ETC concert", increase Quality by one 
-        //COVERED - If "Backstage passes to a TAFKAL80ETC concert" increase by a further 1 if SellIn <11, don't exceed 50
-        //COVERED - If "Backstage passes to a TAFKAL80ETC concert" increase by a further 1 if SellIn <6, don't exceed 50
-        //COVERED - Decrease SellIn if not "Sulfuras, Hand of Ragnaros"
-        //COVERED -If passed SellIn and NOT Aged Brie and Not "Backstage passes to a TAFKAL80ETC concert" reduce Quality by 1
-        //COVERED - If passed SellIn and "Backstage passes to a TAFKAL80ETC concert" set Quality to 0
-        //COVERED- If passed SellIn and Normal item reduce Quality by one
-        //COVERED - If passed SellIn and "AgedBrie" item increase Quality by one
-        //TODO: Conjured degrade twice as fast as normal items (not implemented yet)
-
         [Fact]
         public void Quality_Reduces_For_Normal_Item() {
             IList<Item> Items = [new Item { Name = "foo", SellIn = 1, Quality = 5 }];
@@ -77,7 +62,7 @@ namespace GildedRoseTests
             Assert.Equal(0, item.Quality);
         }
 
-        [Fact(Skip = "Requirements unclear. Aged Brie only increases in quality AFTER the SellIn date")]
+        [Fact]
         public void Quality_Increases_For_Brie()
         {
             IList<Item> Items = [new Item { Name = "Aged Brie", SellIn = 2, Quality = 1 }];
@@ -85,9 +70,7 @@ namespace GildedRoseTests
             app.UpdateQuality();
 
             var item = Items.First();
-
-            //TODO: Test fails, re-check requirements
-            Assert.Equal(3, item.Quality);
+            Assert.Equal(2, item.Quality);
         }
 
         [Fact]
@@ -135,7 +118,7 @@ namespace GildedRoseTests
         }
 
         [Fact]
-        public void Sulfuras_Quality_Is_Stays_At_80()
+        public void Sulfuras_Quality_Stays_At_80()
         {
             IList<Item> Items = [new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 5, Quality = 80 }];
             GildedRose app = new(Items);
@@ -243,7 +226,5 @@ namespace GildedRoseTests
             var item = Items.First();
             Assert.Equal(6, item.Quality);
         }
-
-
     }
 }

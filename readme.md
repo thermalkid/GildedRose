@@ -52,6 +52,12 @@ First pass refactor of UpdateQuality complete. Switch, constaints and dedicated 
 * Added ItemFactory, refined constants, use "StartsWith"
 * Introduced Base class, removed primary constructor.
 * Introduced Conjured item, tests pass, approval test fails.
-* Fixed approval test
+* Fixed approval test, fixed skipped unit test
+* Renamed AgedBrieItem etc to AgedBrieUpdater as that is more in line with what it's doing.
 
-
+### Final Commit - Wrapping Up
+As with everything, it's a case of where to draw the line. We could:- 
+* Look for further opportunities to consolidate code into the base class.
+* Reorganise GildedRoseKata.Common, grouping Interfaces and Updaters into separate folders or libraries
+* Extend unit test coverage around boundaries particularly for backstage passes.
+* Make peace with the goblins, and encourage them to see the benefits of shared code. We've pushed our luck a tad by moving Item.cs and GildedRose.cs to Common.

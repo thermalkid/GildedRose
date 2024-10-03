@@ -7,26 +7,31 @@
         private const string SULFURAS = "Sulfuras";
         private const string CONJURED = "Conjured";
 
+        /// <summary>
+        /// Returns the appropriate Item based on the name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static IQualityUpdater Create(string name)
         {
             if (name.StartsWith(SULFURAS))
             {
-                return new SulfurasItem();
+                return new SulfurasUpdater();
             }
             else if (name.StartsWith(AGED_BRIE))
             {
-                return new AgedBrieItem();
+                return new AgedBrieUpdater();
             }
             else if (name.StartsWith(BACKSTAGE_PASS))
             {
-                return new BackstagePassItem();
+                return new BackstagePassUpdater();
             }
             else if (name.StartsWith(CONJURED))
             {
-                return new ConjuredItem();
+                return new ConjuredUpdater();
             }
 
-            return new NormalItem();
+            return new NormalUpdater();
         }
     }
 }

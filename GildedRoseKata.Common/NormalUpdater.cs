@@ -1,6 +1,9 @@
 ﻿namespace GildedRoseKata.Common
 {
-    internal class NormalItem() : BaseItemUpdater
+    /// <summary>
+    /// Normal items reduce by one before SellIn and 2 afterwards.
+    /// </summary>
+    internal class NormalUpdater() : BaseItemUpdater
     {
         public override void UpdateQuality(Item item)
         {
