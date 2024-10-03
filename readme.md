@@ -47,7 +47,8 @@ First pass refactor of UpdateQuality complete. Switch, constaints and dedicated 
 * Correct namespaces
 * Extend for "Conjured Mana Cake" - note that this will require tests AND break the ApprovalTest
 
-
+## Update 10/3 - Common Library and Classes
+AgedBrieItem & IQualityUpdater introduced. UpdateQuality implemented. Reintroduced "Sulfuras_Quality_Is_Always_80" test.
 
 
 

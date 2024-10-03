@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GildedRoseKata;
 using System.Linq;
+using GildedRoseKata.Common;
 
 namespace GildedRoseTests
 {
@@ -155,7 +156,7 @@ namespace GildedRoseTests
             Assert.Equal(80, item.Quality);
         }
 
-        [Fact(Skip = "Requirements unclear. Sulfuras will maintain the Quality initialised with")]
+        [Fact]
         public void Sulfuras_Quality_Is_Always_80()
         {
             IList<Item> Items = [new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 5, Quality = 50 }];
