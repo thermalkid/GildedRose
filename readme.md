@@ -49,9 +49,8 @@ First pass refactor of UpdateQuality complete. Switch, constaints and dedicated 
 
 ## Update 10/3 - Common Library and Classes
 * AgedBrieItem & IQualityUpdater introduced. UpdateQuality implemented. Reintroduced "Sulfuras_Quality_Is_Always_80" test.
-
 * Added ItemFactory, refined constants, use "StartsWith"
 * Introduced Base class, removed primary constructor.
-
+* Introduced Conjured item, tests pass, approval test fails.
 
 
