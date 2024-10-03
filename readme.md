@@ -52,5 +52,6 @@ First pass refactor of UpdateQuality complete. Switch, constaints and dedicated 
 * Added ItemFactory, refined constants, use "StartsWith"
 * Introduced Base class, removed primary constructor.
 * Introduced Conjured item, tests pass, approval test fails.
+* Fixed approval test
 
 
