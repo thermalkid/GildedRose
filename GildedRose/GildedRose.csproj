@@ -6,4 +6,8 @@
     <StartupObject>GildedRoseKata.Program</StartupObject>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GildedRoseKata.Common\GildedRoseKata.Common.csproj" />
+  </ItemGroup>
+
 </Project>
